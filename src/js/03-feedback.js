@@ -20,21 +20,18 @@ function onInputChange() {
 function onLoad() {
   const savedStateJSON = localStorage.getItem(STORAGE_KEY);
   if (savedStateJSON) {
-    const savedState = JSON.parse(savedStateJSON);
-    form.email.value = savedState.email;
-    form.message.value = savedState.message;
+    try {
+      const savedState = JSON.parse(savedStateJSON);
+      form.email.value = savedState.email;
+      form.message.value = savedState.message;
+    } catch (error) {
+      console.error('Error parsing JSON from local storage:', error);
+    }
   }
 }
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-
-  //   const savedData = {
-  //     email: form.email.value,
-  //     message: form.message.value,
-  //   };
-
-  //   console.log(savedData);
 
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
