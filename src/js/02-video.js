@@ -16,7 +16,16 @@ function setCurrentTime() {
   if (!localStorage.getItem('videoplayer-current-time')) {
     return;
   }
-  player.setCurrentTime(
-    JSON.parse(localStorage.getItem('videoplayer-current-time'))
-  );
+
+  try {
+    const currentTime = JSON.parse(
+      localStorage.getItem('videoplayer-current-time')
+    );
+    player.setCurrentTime(currentTime);
+  } catch (error) {
+    console.error(
+      'An error occurred while parsing JSON from localStorage:',
+      error
+    );
+  }
 }
