@@ -29,12 +29,12 @@ function onLoad() {
 function onFormSubmit(evt) {
   evt.preventDefault();
 
-  const savedData = {
-    email: form.email.value,
-    message: form.message.value,
-  };
+  //   const savedData = {
+  //     email: form.email.value,
+  //     message: form.message.value,
+  //   };
 
-  console.log(savedData);
+  //   console.log(savedData);
 
   evt.currentTarget.reset();
   localStorage.removeItem(STORAGE_KEY);
