@@ -8,8 +8,13 @@ form.addEventListener('input', throttle(onInputChange, 500));
 window.addEventListener('load', onLoad);
 form.addEventListener('submit', onFormSubmit);
 
+let savedData = {
+  email: '',
+  message: '',
+};
+
 function onInputChange() {
-  const savedData = {
+  savedData = {
     email: form.email.value,
     message: form.message.value,
   };
@@ -32,7 +37,12 @@ function onLoad() {
 
 function onFormSubmit(evt) {
   evt.preventDefault();
+  if (savedData.email === '' || savedData.message === '') {
+    alert('Please fill in all fields before submitting.');
+    return;
+  }
 
-  evt.currentTarget.reset();
+  console.log(savedData);
+  form.reset();
   localStorage.removeItem(STORAGE_KEY);
 }
